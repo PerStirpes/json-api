@@ -5,6 +5,7 @@ export default async () => {
   const response = await fetch(url)
   const assets = await response.json()
   console.log(response.status)
+
   if (!response.ok) throw Error(assets.message)
 
   return assets
