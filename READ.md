@@ -6,7 +6,7 @@
 const fetch = require('node-fetch')
 
 module.exports = async () => {
-  const request = await fetch("https://api.github.com/emojis")
+  const request = await fetch('https://api.github.com/emojis')
   const data = await request.json()
 
   return data
@@ -83,53 +83,51 @@ showGitHubUser('PerStirpes')
 *  try/catch blocks handling errors in async functions.
 
 ```js
-import fetch from "node-fetch";
+import fetch from 'node-fetch'
 
 async function fetchFromGitHub(endpoint) {
-    const url = `https://api.github.com${endpoint}`;
-    const response = await fetch(url);
-    const json = await response.json();
+  const url = `https://api.github.com${endpoint}`
+  const response = await fetch(url)
+  const json = await response.json()
 
-    if (response.status !== 200)
-        throw Error(json.message);
+  if (response.status !== 200) throw Error(json.message)
 
-    return json;
+  return json
 }
 
 async function showGitHubUser(handle) {
-    try {
-        const user = await fetchFromGitHub(`/users/${handle}`);
-        console.log(user.name);
-        console.log(user.location);
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-    }
+  try {
+    const user = await fetchFromGitHub(`/users/${handle}`)
+
+  } catch (err) {
+    console.error(`Error: ${err.message}`)
+  }
 }
 
-showGitHubUser("PerStirpes");
+showGitHubUser('PerStirpes')
 ```
 
-* You can await multiple promises either sequentially or concurrently, depending on where you put the await operators. This lesson shows both approaches and compares the performance characteristics.
+* Awaiting multiple promises either sequentially depending on where you put the await operators.
 
 ```js
-import fetch from "node-fetch";
+import fetch from 'node-fetch'
 
 async function fetchFromGitHub(endpoint) {
-    const url = `https://api.github.com${endpoint}`;
-    const response = await fetch(url);
-    return await response.json();
+  const url = `https://api.github.com${endpoint}`
+  const response = await fetch(url)
+  return await response.json()
 }
 
 async function showUserAndRepos(handle) {
-    const userPromise = fetchFromGitHub(`/users/${handle}`);
-    const reposPromise = fetchFromGitHub(`/users/${handle}/repos`);
+  const userPromise = await fetchFromGitHub(`/users/${handle}`)
+  const reposPromise = await fetchFromGitHub(`/users/${handle}/repos`)
 
-    const user = await userPromise;
-    const repos = await reposPromise;
+  const user = await userPromise
+  const repos = await reposPromise
 
-    console.log(user.name);
-    console.log(`${repos.length} repos`);
+  console.log(user.name)
+  console.log(`${repos.length} repos`)
 }
 
-showUserAndRepos("PerStirpes");
+showUserAndRepos('PerStirpes')
 ```
