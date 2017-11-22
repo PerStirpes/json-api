@@ -1,5 +1,5 @@
 import serve from "micro";
-import api from "./lib";
+import api from "./src";
 
 serve(api).listen(8080, err => {
   if (err) throw err;
