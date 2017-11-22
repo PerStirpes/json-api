@@ -1,7 +1,7 @@
-import serve from "micro-core";
+import serve from "micro";
 import api from "./lib";
 
 serve(api).listen(8080, err => {
   if (err) throw err;
-  console.log("Listening on *:8080");
+  console.log("server listening on *:8080");
 });

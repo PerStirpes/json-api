@@ -5,11 +5,12 @@
   "main": "index.js",
   "author": "",
   "license": "UNLICENSED",
+  "engines": {
+    "node": "8.x.x"
+  },
   "dependencies": {
     "micro": "^9.0.2",
-    "node-fetch": "^1.7.3",
-    "micro-core": "0.3.0",
-    "request-promise": "3.0.0"
+    "node-fetch": "^1.7.3"
   },
   "files": [
     "dist"
@@ -20,13 +21,14 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "micro-serve -p 8080 dist/",
+    "start": "micro -p 8080 dist/",
     "build": "babel lib --out-dir dist",
+    "dev": "micro-dev dist/",
     "prepare": "npm run build"
   },
   "devDependencies": {
+    "babel-cli": "6.8.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.8.0",
-    "babel-cli": "6.8.0"
+    "micro-dev": "^1.4.0"
   }
 }
