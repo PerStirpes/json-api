@@ -14,7 +14,7 @@ module.exports = async () => {
 
 ```
 
-### bitcoin async
+### bitcoin async with request-promise
 
 ```js
 
@@ -47,42 +47,43 @@ export default async () => {
 
 ```js
 
-const fetch = require("node-fetch");
+import fetch from 'node-fetch'
 
 async function showGitHubUser(handle) {
-    const url = `https://api.github.com/users/${handle}`;
-    const response = await fetch(url);
-    const user = await response.json();
-    console.log(user.name);
-    console.log(user.location);
+  const url = `https://api.github.com/users/${handle}`
+  const response = await fetch(url)
+  const user = await response.json()
+  console.log(user.name)
+  console.log(user.location)
 }
 
-showGitHubUser("PerStirpes");
+showGitHubUser('PerStirpes')
+
 
 ```
 
 * async func called within a promise chain — returns a promise
 
-```js 
-const fetch = require("node-fetch");
+```js
+import fetch from 'node-fetch'
 
 async function showGitHubUser(handle) {
-    const url = `https://api.github.com/users/${handle}`;
-    const response = await fetch(url);
-    return await response.json();
+  const url = `https://api.github.com/users/${handle}`
+  const response = await fetch(url)
+  return await response.json()
 }
 
-showGitHubUser("PerStirpes")
-    .then(user => {
-        console.log(user.name);
-        console.log(user.location);
-    });
+showGitHubUser('PerStirpes')
+  .then(user => {
+    console.log(user.name)
+    console.log(user.location)
+})
 
  ```   
-* shows how regular control flow statements such as try/catch blocks can be used to properly handle errors in asynchronous functions. Oftentimes, the resulting code is easier to read than complex promise chains with .catch() methods.
+*  try/catch blocks handling errors in async functions.
 
 ```js
- const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 async function fetchFromGitHub(endpoint) {
     const url = `https://api.github.com${endpoint}`;
@@ -111,7 +112,7 @@ showGitHubUser("PerStirpes");
 * You can await multiple promises either sequentially or concurrently, depending on where you put the await operators. This lesson shows both approaches and compares the performance characteristics.
 
 ```js
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 async function fetchFromGitHub(endpoint) {
     const url = `https://api.github.com${endpoint}`;
